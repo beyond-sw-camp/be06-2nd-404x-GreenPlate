@@ -8,7 +8,9 @@ import java.util.List;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.team404x.greenplate.cart.entity.Cart;
 import com.team404x.greenplate.item.review.entity.ItemReview;
 import com.team404x.greenplate.orders.entity.Orders;
@@ -19,6 +21,7 @@ import com.team404x.greenplate.user.address.entity.Address;
 import com.team404x.greenplate.user.keyword.entity.UserKeyword;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +37,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +46,7 @@ public class User {
 	private String password;
 	private String name;
 	private String nickName;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private LocalDate birthday;
 	private int loginCount;
 	private String role;
