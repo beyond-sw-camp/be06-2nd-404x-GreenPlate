@@ -54,7 +54,7 @@ public class OrderQueryRepository extends Querydsl4RepositorySupport {
                             item.id,
                             item.name,
                             orderDetail.price.multiply(orderDetail.cnt).sum(),
-                            orderDetail.cnt.sum(),
+                            orderDetail.count().intValue(),
                             orders.orderDate,
                             orders.orderState,
                             orders.refundYn
@@ -114,7 +114,7 @@ public class OrderQueryRepository extends Querydsl4RepositorySupport {
                             item.id,
                             item.name,
                             orderDetail.price.multiply(orderDetail.cnt).sum(),
-                            orderDetail.cnt.sum(),
+                            orderDetail.count().intValue(),
                             orders.orderDate,
                             orders.orderState,
                             orders.refundYn

@@ -59,6 +59,7 @@ public class Recipe {
 
 	private String title;
 
+	@Column(length=3000)
 	private String contents;
 
 	private String imageUrl;
