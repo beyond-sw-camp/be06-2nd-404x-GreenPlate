@@ -249,9 +249,11 @@ public class OrdersService {
         }else{
             Orders orders2 = orders.get();
             orders2.invoice(orderInvoiceReq.getInvoiceNum());
+            if(orders2.getOrderState().equals(OrderStatus.ready.toString())){
+                orders2.orderState(OrderStatus.shipped.toString());
+            }
             ordersRepository.save(orders2);
         }
-
         return new BaseResponse<>(ORDERS_UPDATE_SUCCESS_INVOICE);
     }
 
